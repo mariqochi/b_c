@@ -1,23 +1,36 @@
 from django.db import models
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from django.utils import timezone
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import AbstractUser
 
 
-
-class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+class User(AbstractUser):
     first_name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=50, null=True)
     phone = models.CharField(max_length=12, null=True)
     email = models.CharField(max_length=25, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_updated = models.DateTimeField(auto_now=True, null=True)
-    profile_pic = models.ImageField(default="basicUser.jpg", null=True, blank=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return self.username
+    
+
+# class Customer(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     first_name = models.CharField(max_length=50, null=True)
+#     last_name = models.CharField(max_length=50, null=True)
+#     phone = models.CharField(max_length=12, null=True)
+#     email = models.CharField(max_length=25, null=True)
+#     date_created = models.DateTimeField(auto_now_add=True, null=True)
+#     date_updated = models.DateTimeField(auto_now=True, null=True)
+#     profile_pic = models.ImageField(default="basicUser.jpg", null=True, blank=True)
+
+#     def __str__(self):
+        # return f"{self.first_name} {self.last_name}"
+
 
 
 class Type(models.Model):
@@ -38,7 +51,7 @@ class Car(models.Model):
     car_type = models.ForeignKey('Type', on_delete=models.SET_NULL, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     picture = models.ImageField(upload_to='images/', null=True, blank=True)
-
+    #car_type = models.ForeignKey('CarType', on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.make} {self.model}"
 

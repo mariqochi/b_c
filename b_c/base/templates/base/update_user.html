@@ -50,9 +50,9 @@
                 <div class="form-group">
                     {{ user_form.phone.label_tag }} {{ user_form.phone }}
                 </div>
-                <div class="form-group">
+                {% comment %} <div class="form-group">
                     {{ user_form.profile_pic.label_tag }} {{ user_form.profile_pic }}
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
         <button class="btn btn-primary" type="submit">Submit</button>

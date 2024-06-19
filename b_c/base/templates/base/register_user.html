@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+<style>
+    .form-group label {
+        display: inline-block;
+        width: 150px; /* Adjust this value as needed */
+        text-align: right;
+        margin-right: 10px; /* Space between label and input */
+    }
+    .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    .form-group input,
+    .form-group textarea {
+        flex: 1;
+    }
+</style>
+
+<div class="container mt-5">
+    <h2 class="mb-4">User Registration</h2>
+    <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="form-group">
+            {{ user_form.username.label_tag }}
+            {{ user_form.username }}
+        </div>
+        <div class="form-group">
+            {{ user_form.password1.label_tag }}
+            {{ user_form.password1 }}
+        </div>
+        <div class="form-group">
+            {{ user_form.password2.label_tag }}
+            {{ user_form.password2 }}
+        </div>
+        <div class="form-group">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+        </div>
+        <div class="form-group">
+            {{ form.phone.label_tag }}
+            {{ form.phone }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{% endblock %}

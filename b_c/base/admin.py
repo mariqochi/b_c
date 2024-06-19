@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Car, Type
+from .models import Car, Type, User
 
 
 
@@ -14,3 +14,7 @@ admin.site.register(Car)
 #     list_display = ('name',)  # Correctly defined list_display attribute
 
 admin.site.register(Type)
+
+
+admin.site.register(User)
+
